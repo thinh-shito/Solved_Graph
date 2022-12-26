@@ -186,13 +186,13 @@ def main(graph):
 
 if __name__ == "__main__":
 	V = ['a','b','c','d']
-	E = {'a': {'b':1,'d':2},
-		'c':{'d':2}
+	E = {'a': {'b':1,'d':2, 'c': 2},
+		'c':{'d':2,}
 		}
-	graph = nx.DiGraph()
+	graph = nx.Graph()
 	graph.add_nodes_from(V)
 	for u, v_list in E.items():
 		for v,w in v_list.items():
 			graph.add_edge(u, v,weight =  w, color = 'b')
 	
-	print(dict(graph['a']).items())
+	print(graph.edges)

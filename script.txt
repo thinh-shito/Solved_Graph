@@ -1,0 +1,85 @@
+1. Giới thiệu
+	Đề tài: hệ thống giải bài tập về đồ thị
+	Định nghĩa:
+		Đồ thị (graph): gồm E và V
+		Trong đó:
+			V: V != ∅, mỗi phần từ là đỉnh (vertex) của đồ thị
+			E: mỗi phần tử là cạnh (edge) của đồ thị
+			(chèn hình đồ thị minh hoạ)
+	Yêu cầu:
+		Input:
+			Tập đỉnh
+			Tập cạnh: u, v, w, (u, v thuộc V và w là trọng số của cạnh)
+			Điểm bắt đầu
+		Output:
+			Lời giải theo thuật toán đã chọn, minh hoạ
+	Miền tri thức: tri thức về Toán rời rạc
+2. Phương pháp thực hiện
+	Mô hình biễu diễn tri thức:
+		V lưu tập đỉnh
+		E lưu cạnh bằng danh sách kề
+		result lưu lời giải
+		st điểm bắt đầu
+	Các thuật:
+		Shortest path:
+			Dijkstra
+				B1: Khởi tạo
+					parent:{v: None với v thuộc V}
+					length:{v: inf với v thuộc V}
+					visited:[]
+					length[st] :0
+
+				B2:	Lần lượt xét các đỉnh kề b của đỉnh st. 
+					Nếu khoảng cách (gốc,b) > khoảng cách (st,b)
+					Thì parent [b]:a, length[b]: khoảng cách (st,b)
+				
+				B3:	Tìm x có length nhỏ nhất của các đỉnh chưa đi qua
+					thêm (parent[x],x) vào result, st: x
+					Quay lại B3
+
+		Minimum spanning tree:
+			Cây khung (spanning tree) của đồ thị là một tập hợp các cạnh của đồ thị 
+			thỏa mãn tập cạnh này không chứa chu trình và liên thông 
+			Krusal
+				B1: sort các cạnh theo trọng số tăng dần
+				B2: xét cạnh i từ trên xuống,
+					nếu hai đỉnh của cạnh i có chung một cha thì xét đến cạnh tiếp
+					ngược lại theo vào result
+			Prim
+				B1: Khởi tạo 
+					T: [] , lưu các đinh đã đi
+				B2: thêm st vào T
+				B3: tìm đỉnh x có khoảng cách gần nhất với các đỉnh trong T
+					st:x
+					quay lại B2
+		Circuit:
+			Euler
+			Hamilton
+	Cài đặt giao diện: sử dụng streamlit framework để cài giao diện đơn giản.
+3. Thử nghiệm chương trình
+#undirected graph
+# euler, hamilton, dijkstra, prim, hamilton
+1 2 3 4 5 6
+1 2 1
+2 3 1
+1 3 2
+1 5 2
+2 5 2
+2 4 3
+3 5 4
+3 4 6
+4 5 3
+4 6 7
+6 1 8
+# directed
+f e d a b c 
+d a 9
+e d 8
+a e 1
+a b 4
+c a 3
+c f 6
+e c 2
+f e 7
+b c 5
+4. Tổng hợp kết quả thử nghiệm

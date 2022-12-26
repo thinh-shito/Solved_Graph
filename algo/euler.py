@@ -1,6 +1,5 @@
-def get_a_tour():#return possible circuit
+def get_a_tour(graph):#return possible circuit
 
-    global graph
     nodes_degree = {}       # Creating a {node: degree} dictionary for current graph.
     for edge in graph:
         a, b = edge[0], edge[1]
@@ -35,9 +34,8 @@ def get_a_tour():#return possible circuit
             if tour[0] == tour[-1]:
                 return tour
 
-def get_eulerian_circuit():
-    global graph
-    tour = get_a_tour()
+def get_eulerian_circuit(graph):
+    tour = get_a_tour(graph)
 
     if graph:   # If stuck at the beginning, finding additional tour in the graph.
         loop = enumerate(tour[: -1])
@@ -47,7 +45,7 @@ def get_eulerian_circuit():
         try:
             while True:
                 if node in list(zip(*graph))[0] or node in list(zip(*graph))[1]:
-                    t = get_a_tour()    # Retreivng the additional tour
+                    t = get_a_tour(graph)    # Retreivng the additional tour
                     j = t.index(node)
                     tour = tour[ : i] + t[j:-1] + t[ :j+1] + tour[i+1: ]        # Joining the two tours.
                     if not graph:       # Found Eulerian Tour
@@ -58,11 +56,11 @@ def get_eulerian_circuit():
                 node = l[1]
         except StopIteration:   # Seems like the vertices in the current tour cannot connect to rest of the edges in the graph.
             print("Your graph doesn't seem to be connected")
-            exit()
+            return []
     else:       # Found the Eulerian Tour in the very first call
         return tour
 
-def check(graph):
+def solve(graph, start):
     #demo
     graph = [(1, 2), (2, 3), (3, 1), (3, 4), (4, 3)]
     # creating a {node: degree} dictionary
@@ -81,20 +79,19 @@ def check(graph):
             return []
 
     #finding Eulerian Tour
-    tour = get_eulerian_circuit()
+    tour = get_eulerian_circuit(graph)
     # print(tour)
     return tour
     
 if __name__ =='__main__':
-    pass
-
-
-# graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6)]
-# graph = [(1, 2), (1, 3), (2, 3)]
-# graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6), (9, 10), (10, 11), (11, 9)]
-# graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6), (2, 7), (7, 8), (8, 2)]
-# graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6), (1, 5), (5, 6), (1, 6)]
-# graph = [(1, 2), (2, 3), (3, 1), (3, 4), (4, 3)]
-# graph = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
-# graph = [(2, 6), (4, 2), (5, 4), (6, 5), (6, 8), (7, 9), (8, 7), (9, 6)]
-#graph = [(1, 2), (3, 1), (2, 3), (3, 4), (4, 3)]
+    # pass
+    graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6)]
+    # graph = [(1, 2), (1, 3), (2, 3)]
+    # graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6), (9, 10), (10, 11), (11, 9)]
+    # graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6), (2, 7), (7, 8), (8, 2)]
+    # graph = [(1, 2), (1, 3), (2, 3), (2, 4), (2, 6), (3, 4), (3, 5), (4, 5), (4, 6), (1, 5), (5, 6), (1, 6)]
+    # graph = [(1, 2), (2, 3), (3, 1), (3, 4), (4, 3)]
+    # graph = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
+    # graph = [(2, 6), (4, 2), (5, 4), (6, 5), (6, 8), (7, 9), (8, 7), (9, 6)]
+    #graph = [(1, 2), (3, 1), (2, 3), (3, 4), (4, 3)]
+    print(solve(graph,None))
