@@ -4,7 +4,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import random
-import cv2
 import re
 import time
 import graph_visual as gv
@@ -123,11 +122,11 @@ try:
 									Đường đi từ {start.strip()} đến {end}: {l}\
 									</p>'
 						st.markdown(new_title, unsafe_allow_html=True)
-		
+		st.success('Hoàn thành!')
 except:
 	st.error('!!Không thể giải!!')
 			
-		st.success('Hoàn thành!')
+		
 
 
 	# e = RuntimeError('Không thể giải')

@@ -71,6 +71,7 @@
 4 5 3
 4 6 7
 6 1 8
+
 # directed
 f e d a b c 
 d a 9

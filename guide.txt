@@ -1,0 +1,32 @@
+cài đặt các thử viện được sử dụng trong chương trình
+
+pip install -r requirements.txt
+
+chạy chương trình
+
+python3 app.py
+
+Chương trình
+
+chọn hướng đồ thị:
+	vd: undirected
+nhập các đỉnh đồ thị cách nhau bởi space:
+	vd: 1 2 3 4 5 6
+nhập các cạnh đồ thị có trọng số theo cú pháp: <đỉnh đầu> <đỉnh cuối> <trọng số>
+	vd:
+		1 2 1
+		2 3 1
+		1 3 2
+		1 5 2
+		2 5 2
+		2 4 3
+		3 5 4
+		3 4 6
+		4 5 3
+		4 6 7
+		6 1 8
+chọn phương pháp:
+chọn đỉnh đầu( riêng krusal không có đỉnh đầu)
+click SOLVE
+
+
