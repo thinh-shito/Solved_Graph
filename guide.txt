@@ -1,4 +1,4 @@
-cài đặt các thử viện được sử dụng trong chương trình
+cài đặt các thư viện được sử dụng trong chương trình
 
 pip install -r requirements.txt
 
