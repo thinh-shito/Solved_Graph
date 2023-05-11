@@ -2,5 +2,5 @@
 
 ## Desciption
 
-Projact built to solve some problem about graph
+Project built to solve some problem about graph
 
